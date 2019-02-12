@@ -23,11 +23,12 @@ from rest_framework.routers import DefaultRouter
 
 from Myonline.settings import MEDIA_ROOT
 import xadmin
-from goods.views import GoodsListViewSet
+from goods.views import CategoryViewset,TestViewset
 
 router = DefaultRouter()
 #配置goods的url
-router.register(r'goods', GoodsListViewSet, base_name="goods")
+router.register(r'categorys', CategoryViewset, base_name="category")
+router.register(r'test', TestViewset, base_name="test")
 
 
 urlpatterns = [
@@ -35,6 +36,6 @@ urlpatterns = [
 url(r'media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'docs/', include_docs_urls(title="慕学生鲜")),
-    path(r'rest/', include(router.urls)),
+    path(r'', include(router.urls)),
 
 ]

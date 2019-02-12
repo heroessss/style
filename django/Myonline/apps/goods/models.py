@@ -138,3 +138,21 @@ class HotSearchWords(models.Model):
 
     def __str__(self):
         return self.keywords
+
+
+
+class Test(models.Model):
+    code=models.CharField(max_length=10,verbose_name="编码",null=True,blank=True)
+    designer=models.CharField(max_length=10,verbose_name="设计师")
+    label=models.CharField(max_length=10,verbose_name="标签",null=True,blank=True)
+    work=models.BooleanField(default=False,verbose_name="是否上架")
+    image = models.ImageField(upload_to="goods_image",default=u"goods_image/default.png", max_length=100,verbose_name="图片")
+    describe=models.TextField(verbose_name="描述")
+    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+
+    class Meta:
+        verbose_name = "商品信息"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str(self.id)
